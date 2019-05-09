@@ -6,6 +6,7 @@ from scripts.Backend import *
 from scripts.CourseStatus import *
 import os
 
+
 app = Flask(__name__, static_folder='build/static', template_folder='build/')
 CORS(app)
 backend = Backend()
@@ -28,7 +29,7 @@ def submit():
 def checkCourses():
     course, status = backend.trackCourse(courses)
     if (course is not None and status is not None):
-        print(course.crn, status)
+        backend.sendMessage(f'Course with crn: {course.crn} has changed')
     print('no updates')
 
 if __name__ == "__main__":
