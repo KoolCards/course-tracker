@@ -1,5 +1,4 @@
 from requests_html import HTMLSession
-from scripts.CourseStatus import *
 from twilio.rest import Client
 
 class Backend:

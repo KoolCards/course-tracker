@@ -16,7 +16,9 @@ class App extends Component{
             body: data
         }).then(
             (result) => {
-                console.log(result.text())
+                console.log(result.text().then(function(resText) {
+                    alert(resText)
+                }))
             },
             (error) => {
             }
