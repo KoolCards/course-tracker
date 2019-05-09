@@ -4,13 +4,12 @@ from apscheduler.schedulers.background import BackgroundScheduler
 import time
 from scripts.Backend import *
 from scripts.CourseStatus import *
+from scripts.Scheduler import *
 import os
-
 
 app = Flask(__name__, static_folder='build/static', template_folder='build/')
 CORS(app)
 backend = Backend()
-courses = []
 
 @app.route("/")
 def index():
@@ -33,15 +32,5 @@ def checkCourses():
     print('no updates')
 
 if __name__ == "__main__":
-    courses.append(CourseStatus('201908', '83870', False))
-    scheduler = BackgroundScheduler()
-    scheduler.add_job(checkCourses, 'interval', seconds=3)
-    scheduler.start()
     app.run(host='0.0.0.0', port=os.environ.get('PORT', 4000), debug=True)
-
-    try:
-        while True:
-            time.sleep(2)
-    except (KeyboardInterrupt, SystemExit):
-        scheduler.shutdown()
 
