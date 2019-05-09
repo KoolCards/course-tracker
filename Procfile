@@ -1,2 +1,2 @@
 web: gunicorn app:app
-scheduler: python Scheduler.py
+scheduler: python scripts/Scheduler.py
