@@ -1,10 +1,18 @@
 from flask import Flask, render_template, jsonify, request
 from flask_cors import CORS
-from apscheduler.schedulers.background import BackgroundScheduler
-import time
 from scripts.Backend import *
-from scripts.CourseStatus import *
 import os
+import pyrebase
+
+config = {
+    "apiKey": "AIzaSyAQNWWueglSwwcU9X07k5x-tlVC9wykCC4",
+    "authDomain": "course-tracker-11.firebaseapp.com",
+    "databaseURL": "https://course-tracker-11.firebaseio.com",
+    "storageBucket": "course-tracker-11.appspot.com"
+}
+
+firebase = pyrebase.initialize_app(config)
+db = firebase.database()
 
 app = Flask(__name__, static_folder='build/static', template_folder='build/')
 CORS(app)
@@ -18,10 +26,7 @@ def index():
 def submit():
     crn = request.form['crn']
     term = request.form['term']
-    course = CourseStatus(term, crn, False)
-    file = open('courses.txt', 'a')
-    file.write(course.crn + ' ' + course.term + '\n')
-    file.close()
+    db.child('courses').update({f"{crn}": f"{term}"})
     return jsonify('This course has been added to the list to track')
 
 if __name__ == "__main__":
