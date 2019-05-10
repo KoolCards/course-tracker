@@ -152,6 +152,10 @@ class App extends Component{
                     GT Course Tracker
                 </Typography>
 
+                <Typography variant="body2" noWrap>
+                    Enter the course CRN (i.e. 83870) and the term in the format year + start month (i.e. 201908).
+                </Typography>
+
                 <div className="inputData">
                     <TextField label="CRN: " defaultValue="83870" onChange={this.crnchange} className={classes.crninput} variant="outlined"></TextField>
                     <TextField label="Term: " defaultValue="201908" onChange={this.termchange} className={classes.termInput} variant="outlined"></TextField>
@@ -159,7 +163,7 @@ class App extends Component{
 
                 <div className={classes.submitButton}>
                     <Button variant="contained" color="secondary" onClick={this.submitForm}>
-                        Submit Form
+                        Submit
                     </Button>
                     <FormControlLabel className={classes.formLabel} control={<Switch checked={this.state.checked} onChange={this.switchChange}/>} label={this.state.formLabelValue}/>
                 </div>
