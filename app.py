@@ -5,7 +5,7 @@ import os
 import pyrebase
 
 config = {
-    "apiKey": "AIzaSyAQNWWueglSwwcU9X07k5x-tlVC9wykCC4",
+    "apiKey": os.environ['CT_FIREBASE_KEY'],
     "authDomain": "course-tracker-11.firebaseapp.com",
     "databaseURL": "https://course-tracker-11.firebaseio.com",
     "storageBucket": "course-tracker-11.appspot.com"

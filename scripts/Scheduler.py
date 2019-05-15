@@ -2,9 +2,10 @@ from apscheduler.schedulers.blocking import BlockingScheduler
 from CourseStatus import *
 from Backend import *
 import pyrebase
+import os
 
 config = {
-    "apiKey": "AIzaSyAQNWWueglSwwcU9X07k5x-tlVC9wykCC4",
+    "apiKey": os.environ['CT_FIREBASE_KEY'],
     "authDomain": "course-tracker-11.firebaseapp.com",
     "databaseURL": "https://course-tracker-11.firebaseio.com",
     "storageBucket": "course-tracker-11.appspot.com"
